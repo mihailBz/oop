@@ -15,30 +15,12 @@ public class Text {
         }
     }
 
-
-
-    public StringBuilder wordDeleter() {
-        StringBuilder wordsToDelete = new StringBuilder();
-                for (Sentence sentence :
-                sentences) {
-                    wordsToDelete.append(sentence.wordDeleter());
-                }
-                return wordsToDelete;
-
-//        Sentence[] newSentences = new Sentence[sentences.length];
-//        int counter = 0;
-//        for (Sentence sentence :
-//                sentences) {
-//            SentenceElement[] sentenceElements = sentence.wordDeleter();
-//            sentence = new Sentence(sentenceElements);
-//            newSentences[counter] = sentence;
-//            counter +=1;
-//        }
-//        return new Text(newSentences);
-//
+    public void wordDeleter() {
+        for (Sentence sentence:
+        sentences) {
+            sentence.wordDeleter();
+        }
     }
-
-
 
     @Override
     public String toString() {

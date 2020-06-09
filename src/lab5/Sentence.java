@@ -2,11 +2,13 @@ package lab5;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Sentence extends SentenceElement {
 
     private static final String punctuationSymbols = ",.!?;";
     private SentenceElement[] sentenceElements;
+    private final int requiredLength = 5;
 
     public Sentence(SentenceElement[] sentenceElements) {
         this.sentenceElements = sentenceElements;
@@ -37,73 +39,21 @@ public class Sentence extends SentenceElement {
         return sentenceString.toString();
     }
 
-//    public Word[] wordDeleter(){
-//        ArrayList<Word> wordsToDeleteList;
-//        wordsToDeleteList = new ArrayList<Word>();
-//        Word [] wordsToDelete = {};
-//        for (SentenceElement sentenceElement:
-//             sentenceElements) {
-//            if(sentenceElement instanceof Word){
-//                Word word = (Word) sentenceElement;
-//                if (word.length() == 5 && word.StartsWithConsonant()){
-//                    wordsToDeleteList.add(word);
-//                }
-//            }
-//            wordsToDelete = wordsToDeleteList.toArray(new Word[wordsToDeleteList.size()]);
-//        }
-//        return wordsToDelete;
-//    }
-//}
-
-    public StringBuilder wordDeleter() {
-        StringBuilder wordsToDelete = new StringBuilder();
-//        SentenceElement[] newSentenceElements = new SentenceElement[sentenceElements.length - wordsToDelete.toString().split("\n").length];
-//        int counter = 0;
-
+    public void wordDeleter(){
+        ArrayList<SentenceElement> newSentenceElementsArrayList = new ArrayList<>();
         for (SentenceElement sentenceElement :
-                sentenceElements) {
-            if (sentenceElement instanceof Word) {
+        sentenceElements){
+            if ( sentenceElement instanceof Word) {
                 Word word = (Word) sentenceElement;
-                if (word.length() == 5 && word.StartsWithConsonant()) {
-                    wordsToDelete.append(word.toString() + "\n");
+                if (word.length() == requiredLength && word.StartsWithConsonant()){}
+                else {
+                    newSentenceElementsArrayList.add(word);
                 }
+            } else {
+                newSentenceElementsArrayList.add(sentenceElement);
             }
         }
-        return wordsToDelete;
-//        for (SentenceElement sentenceElement :
-//                sentenceElements) {
-//            if (sentenceElement instanceof Word) {
-//                Word word = (Word) sentenceElement;
-//                if (wordsToDelete.toString().contains(word.toString())) {
-//                    continue;
-//                } else {
-//                    newSentenceElements[counter] = word;
-//                    counter += 1;
-//                }
-//            }
-//        }
-//        return newSentenceElements;
+        SentenceElement[] newSentenceElements = new SentenceElement[newSentenceElementsArrayList.size()];
+        this.sentenceElements = newSentenceElementsArrayList.toArray(newSentenceElements);
     }
 }
-
-
-
-//    public SentenceElement[] wordsInSentenceDeleter(StringBuilder wordsToDelete) {
-//        SentenceElement[] newSentenceElements = new SentenceElement[sentenceElements.length - wordsToDelete.toString().split("\n").length];
-//        int counter = 0;
-//
-//        for (SentenceElement sentenceElement :
-//                sentenceElements) {
-//            if (sentenceElement instanceof Word) {
-//                Word word = (Word) sentenceElement;
-//                if (wordsToDelete.toString().contains(word.toString())) {
-//                    continue;
-//                } else {
-//                    newSentenceElements[counter] = word;
-//                    counter += 1;
-//                }
-//            }
-//
-//        }
-//        return newSentenceElements;
-//    }
